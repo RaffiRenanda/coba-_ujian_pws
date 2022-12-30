@@ -5,6 +5,7 @@
  */
 package Coba_Ujian_Dua.ws;
 
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,17 +21,10 @@ public class CobaCOntroller {
     Buah data = new Buah();
     BuahJpaController actrl = new BuahJpaController();
     
-    @RequestMapping("/getBuah/{id}")
-    public String getBuah(@PathVariable("id") int id){
-       try
-       {
-           data = actrl.findBuah(id);
-           return data.getNamaBuah();
-       }
-       catch(Exception error)
-               {
-                   return "Nama Buah Tidak Ada";
-               }
+    @RequestMapping("/getBuah")
+    public List<Buah> getBuah(){
+        return actrl.findBuahEntities();
+       
     }
     
     @RequestMapping ("/delBuah/{id}")
